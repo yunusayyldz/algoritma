@@ -1,0 +1,76 @@
+def miras_hesapla():
+    print("--- Python Miras Paylaştırma Programı ---")
+    
+    try:
+        toplam_miras = float(input("Toplam Miras Miktarını Giriniz (TL): "))
+    except ValueError:
+        print("Lütfen geçerli bir sayı giriniz.")
+        return
+
+    es_var_mi = input("Ölen kişinin eşi hayatta mı? (e/h): ").lower()
+    
+    es_payi = 0
+    kalan_miras = toplam_miras
+
+    alt_soy_var_mi = input("Ölen kişinin alt soyu (çocuk veya torun) var mı? (e/h): ").lower()
+
+    if alt_soy_var_mi == 'e':
+        if es_var_mi == 'e':
+            es_payi = toplam_miras / 4
+            print(f"Eşin Payı (1/4): {es_payi:.2f} TL")
+        
+        kalan_miras = toplam_miras - es_payi
+        
+        try:
+            cocuk_sayisi = int(input("Miras alacak çocuk sayısı kaçtır?: "))
+            if cocuk_sayisi > 0:
+                kisi_basi = kalan_miras / cocuk_sayisi
+                print(f"Çocuklara Kalan Toplam: {kalan_miras:.2f} TL")
+                print(f"Çocuk Başına Düşen: {kisi_basi:.2f} TL")
+        except ValueError:
+            print("Lütfen sayı giriniz.")
+
+    else:
+        anne_var_mi = input("Anne hayatta mı? (e/h): ").lower()
+        baba_var_mi = input("Baba hayatta mı? (e/h): ").lower()
+        kardes_var_mi = input("Kardeş var mı? (e/h): ").lower()
+        
+        if anne_var_mi == 'e' or baba_var_mi == 'e' or kardes_var_mi == 'e':
+            if es_var_mi == 'e':
+                es_payi = toplam_miras / 2
+                print(f"Eşin Payı (1/2): {es_payi:.2f} TL")
+            
+            kalan_miras = toplam_miras - es_payi
+            
+            anne_payi = kalan_miras / 2
+            baba_payi = kalan_miras / 2
+            
+            if anne_var_mi == 'e':
+                print(f"Anneye Düşen: {anne_payi:.2f} TL")
+            elif kardes_var_mi == 'e':
+                print(f"Anne payı ({anne_payi:.2f} TL) kardeşlere kalır.")
+            else:
+                baba_payi += anne_payi
+
+            if baba_var_mi == 'e':
+                print(f"Babaya Düşen: {baba_payi:.2f} TL")
+            elif kardes_var_mi == 'e':
+                print(f"Baba payı ({baba_payi:.2f} TL) kardeşlere kalır.")
+        
+        else:
+            buyuk_aile = input("Büyükanne veya büyükbaba var mı? (e/h): ").lower()
+            
+            if buyuk_aile == 'e':
+                if es_var_mi == 'e':
+                    es_payi = toplam_miras * 0.75
+                    print(f"Eşin Payı (3/4): {es_payi:.2f} TL")
+                kalan_miras = toplam_miras - es_payi
+                print(f"Kalan {kalan_miras:.2f} TL büyükanne/büyükbabalara dağıtılır.")
+            
+            else:
+                if es_var_mi == 'e':
+                    print(f"Tüm miras ({toplam_miras:.2f} TL) eşe kalır.")
+                else:
+                    print("Miras devlete kalır.")
+
+miras_hesapla()
