@@ -1,3 +1,4 @@
+#örnek = "kabak" düz halide ters halide aynı olana deniyor palindrom
 def palindrom_kontrol(metin):
     # 1. Adım: Temiz bir versiyon oluştur (Sadece harfler ve sayılar)
     temiz_metin = ""
