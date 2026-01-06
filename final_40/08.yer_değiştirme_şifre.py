@@ -1,3 +1,21 @@
+metin = input("giriniz")
+
+şifreli = ""
+
+for i in range(0, len(metin)-1,2):
+    şifreli += metin[i+1] + metin[i]
+if len(metin) % 2 != 0:
+    şifreli += metin[-1]
+    
+print("orjinal",metin)
+print("şifreli",şifreli)
+
+
+
+
+
+
+
 # 1. Adım: Metni alıyoruz
 metin = input("Şifrelenecek metni giriniz: ")
 
@@ -23,3 +41,6 @@ if len(metin) % 2 != 0:
 # 4. Adım: Sonucu yazdırıyoruz
 print("Orijinal Metin:", metin)
 print("Şifreli Metin :", sifreli_metin)
+
+
+
