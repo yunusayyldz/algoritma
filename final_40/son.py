@@ -44,19 +44,15 @@ else:
 # Hem küçük hem büyük harfleri yazdık ki hatasız bulsun.
 sesli_harfler = "aeıioöuüAEIİOÖUÜ"
 
-# 2. Adım: Sayacı hazırlıyoruz (Başlangıçta 0)
 sayac = 0
 
-# 3. Adım: Kullanıcıdan cümleyi alıyoruz
 cumle = input("Lütfen bir cümle giriniz: ")
 
-# 4. Adım: Cümlenin içindeki her harfi tek tek geziyoruz
 for harf in cumle:
-    # Eğer o anki harf, sesli_harfler listemizin içindeyse;
-    if harf in sesli_harfler:
-        sayac += 1  # Sayacı 1 artır
 
-# 5. Adım: Sonucu yazdırıyoruz
+    if harf in sesli_harfler:
+        sayac += 1 
+
 print("Bu cümledeki sesli harf sayısı:", sayac)
 
 
@@ -66,25 +62,19 @@ print("Bu cümledeki sesli harf sayısı:", sayac)
 # 1. Adım: Kullanıcıdan metni alıyoruz
 girilen_metin = input("Lütfen bir metin giriniz: ")
 
-# 2. Adım: Metni terse çeviriyoruz
-# [::-1] ifadesi Python'a özel bir kısayoldur.
 ters_metin = girilen_metin[::-1]
 
-# 3. Adım: Sonucu ekrana yazdırıyoruz
 print("Metnin ters hali:", ters_metin)
 
 
 # -----------------------------------------------------------------------------
 # 05. Büyük/Küçük Harf Dönüşümü
 # -----------------------------------------------------------------------------
-# 1. Adım: Kullanıcıdan metni alıyoruz
+
 girilen_metin = input("Lütfen bir metin giriniz: ")
 
-# 2. Adım: Büyük/Küçük harfleri birbirine dönüştürüyoruz
-# swapcase() komutu bu takas işlemini otomatik yapar.
 donusturulmus_metin = girilen_metin.swapcase()
 
-# 3. Adım: Sonucu ekrana yazdırıyoruz
 print("Dönüştürülmüş hali:", donusturulmus_metin)
 
 
@@ -117,10 +107,8 @@ metin = input("Lütfen bir metin giriniz: ")
 
 print("--- İndis Numaraları ve Harfler ---")
 
-# 2. Adım: enumerate fonksiyonu ile hem sırayı hem harfi alıyoruz
-# 'sira' değişkeni numarayı (0, 1, 2...), 'karakter' değişkeni harfi tutar.
 for sira, karakter in enumerate(metin):
-    # f-string yapısı (f"...") ile değişkenleri metin içine kolayca yerleştiriyoruz.
+
     print(f"{sira} -> {karakter}")
 
 
@@ -138,35 +126,6 @@ if len(metin) % 2 != 0:
     
 print("orjinal",metin)
 print("şifreli",şifreli)
-
-# --- (Dosyadaki İkinci Çözüm) ---
-
-# 1. Adım: Metni alıyoruz
-metin = input("Şifrelenecek metni giriniz: ")
-
-# Şifrelenmiş halini tutacağımız boş bir kutu (değişken) oluşturuyoruz
-sifreli_metin = ""
-
-# 2. Adım: İkişer ikişer atlayarak döngü kuruyoruz
-# range(başlangıç, bitiş, adım_sayısı)
-# len(metin) - 1 dedik çünkü son harf tek kalırsa hata vermesin, onu döngü dışında halledeceğiz.
-for i in range(0, len(metin) - 1, 2):
-    # i -> O anki harfin sırası
-    # i+1 -> Yanındaki harfin sırası
-    
-    # Önce yanındakini (i+1), sonra kendisini (i) alıp ekliyoruz.
-    sifreli_metin += metin[i+1] + metin[i]
-
-# 3. Adım: Metin uzunluğu tek sayı mı diye kontrol ediyoruz
-if len(metin) % 2 != 0:
-    # Eğer tek sayıysa, en sondaki harf işlem görmedi demektir.
-    # Onu da olduğu gibi sona ekliyoruz.
-    sifreli_metin += metin[-1]
-
-# 4. Adım: Sonucu yazdırıyoruz
-print("Orijinal Metin:", metin)
-print("Şifreli Metin :", sifreli_metin)
-
 
 # -----------------------------------------------------------------------------
 # 09. Sansürleme
@@ -203,32 +162,27 @@ print(f"İçinde 'a' harfi geçen kelime sayısı: {sayac}")
 # -----------------------------------------------------------------------------
 # 11. Sayı Tahmin Oyunu
 # -----------------------------------------------------------------------------
-import random  # Rastgele sayı üretmek için gerekli kütüphane
+import random 
 
-puan = 0  # Başlangıç puanımız
+puan = 0 
 
 print("--- Sayı Tahmin Oyunu Başladı! ---")
 print("Hedef: 5 puan toplamak.\n")
 
-# Puan 5'ten küçük olduğu sürece bu döngü dönmeye devam eder.
 while puan < 5:
-    # 1. Adım: Bilgisayar 1-5 arası sayı tutar
+
     gizli_sayi = random.randint(1, 5)
     
-    # 2. Adım: Kullanıcıdan tahmin istenir
-    # input'u int() ile tam sayıya çeviriyoruz.
     tahmin = int(input(f"Puanın {puan}. Tahminin (1-5 arası): "))
     
-    # 3. Adım: Kontrol
     if tahmin == gizli_sayi:
-        puan += 1  # Puanı 1 artır
+        puan += 1  
         print("Tebrikler! Doğru bildin.")
     else:
         print(f"Maalesef... Tuttuğum sayı {gizli_sayi} idi.")
     
-    print("-" * 20)  # Görsel olarak turları ayırmak için çizgi
+    print("-" * 20)  
 
-# Döngü bittiğinde burası çalışır
 print("\nOyun Bitti! Toplam 5 puana ulaştın, şampiyonsun!")
 
 
@@ -286,31 +240,25 @@ print(f"Üçgenin Alanı: {alan:.2f}")
 # 1. Adım: Kullanıcıdan şifreyi alıyoruz
 sifre = input("Lütfen şifrenizi giriniz: ")
 
-# 2. Adım: Kontrol bayraklarını hazırlıyoruz (Başlangıçta hiçbiri yok)
 buyuk_var = False
 kucuk_var = False
 rakam_var = False
 simge_var = False
 
-# Özel karakterlerin ne olduğunu tanımlayalım
 simgeler = "!@#$%^&*()_+-=[]{}|;':,.<>/?\\"
 
-# 3. Adım: Şifredeki her karakteri tek tek kontrol ediyoruz
 for karakter in sifre:
-    if karakter.isupper():       # Büyük harf mi?
+    if karakter.isupper():       
         buyuk_var = True
-    elif karakter.islower():     # Küçük harf mi?
+    elif karakter.islower():     
         kucuk_var = True
-    elif karakter.isdigit():     # Rakam mı?
+    elif karakter.isdigit():     
         rakam_var = True
-    elif karakter in simgeler:   # Listemizdeki simgelerden biri mi?
+    elif karakter in simgeler:   
         simge_var = True
 
-# 4. Adım: Puanı hesaplıyoruz
-# Python'da True = 1, False = 0 demektir. Bunları toplayabiliriz.
 toplam_puan = int(buyuk_var) + int(kucuk_var) + int(rakam_var) + int(simge_var)
 
-# 5. Adım: Sonucu ekrana yazdırıyoruz
 print(f"Tespit edilen özellik sayısı: {toplam_puan}")
 
 if toplam_puan == 4:
@@ -375,4 +323,37 @@ print([s for s in range(2, limit + 1) if all(s % i != 0 for i in range(2, int(s*
 
 # 34. Mükemmel Sayı
 s = int(input("Sayı: "))
-print("Mükemmel" if s > 1
+print("Mükemmel" if s > 1 and sum(i for i in range(1, s//2 + 1) if s % i == 0) == s else "Değil")
+
+# 39. Armstrong Sayısı
+s = input("Sayı: ")
+print("Armstrong" if sum(int(d)**len(s) for d in s) == int(s) else "Değil")
+
+
+# --- LİSTE VE İSTATİSTİK İŞLEMLERİ ---
+
+# 22. Onlar Basamağı Toplama
+print(sum(((int(input(f"{i}. sayı: ")) // 10) % 10) * 10 for i in range(1, 11)))
+
+# 23. En Büyük Sayı
+print("En büyük:", max(int(input(f"{i}. sayı: ")) for i in range(1, 11)))
+
+# 31. Liste İstatistik
+L = list(map(int, input("Sayılar: ").split()))
+print(f"Ort: {sum(L)/len(L):.2f}, Min: {min(L)}, Max: {max(L)}")
+
+# 33. Ters Liste
+L = input("Liste: ").split()
+print([L[i] for i in range(len(L)-1, -1, -1)])
+
+# 35. Kesişim Birleşim
+s1, s2 = set([1,2,3,4,5]), set([4,5,6,7,8])
+print(f"Kesişim: {s1 & s2}, Birleşim: {s1 | s2}")
+
+# 36. Tekrar Edenler
+L = input("Veri: ").split()
+print(set([x for x in L if L.count(x) > 1]))
+
+# 38. Not Ortalaması
+n = [float(input(f"{i+1}. Not: ")) for i in range(int(input("Kaç öğrenci: ")))]
+print(f"Ort: {sum(n)/len(n):.2f}, Max: {max(n)}, Min: {min(n)}")
