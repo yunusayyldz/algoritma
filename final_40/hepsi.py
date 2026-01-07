@@ -145,19 +145,17 @@ print("\nOyun Bitti! Toplam 5 puana ulaştın, şampiyonsun!")
 
 # 12 - bankot
 
-banknot_listesi = [200, 100, 50, 20, 10, 5, 1]
+banknot = [200, 100, 50, 20, 10, 5, 1]
 
 para = int(input("Lütfen para miktarını giriniz: "))
 
-print(f"\n--- {para} TL için Banknot Dağılımı ---")
+for değer in banknot:
 
-for banknot in banknot_listesi:
-    
-    adet = para // banknot
-    
+    adet = para // değer
+
     if adet > 0:
-        print(f"{adet} x {banknot} TL")
+        print(adet,"x",değer)
         
-        para = para % banknot
+        para = para % değer
 
 # 13 - 
